@@ -2,11 +2,11 @@
 
 ## Descarga del repositorio
 
-### * Windows / Mac
+### Windows / Mac
 
 Tenéis la aplicación [GitHub Desktop](https://desktop.github.com/) para trabajar gráficamente. Una vez instalada, refrescad esta página y dadle al botón de **Clone or download**. Pulsad **Open in Desktop** para clonarlo. Elegid la carpeta donde clonarlo y listo.
 
-### * GNU/Linux
+### GNU/Linux
 
 Tenéis que instalar el paquete Git, que ya viene incluido en los repositorios. Podeis usar uno de los siguientes comandos:
 
@@ -44,13 +44,13 @@ $ git clone https://github.com/NEKERAFA/AA.git
 
 ## Subir al repositorio o bajar actualizaciones
 
-### * Windows / Mac
+### Windows / Mac
 
 Una vez modificado los archivos de la carpeta del repositorio en local, abrimos GitHub Desktop y nos detectará los cambios. Para hacer un *commit* de los cambios, debemos añadir algo a *Summary* y luego pulsamos **Commit to master**. Una vez hecho le damos al botón **Sync** para que suba la nueva versión al repositorio.
 
 Para bajarnos lo último añadido por los demás también hay que darle al botón **Sync**, solo que sin hacer ningún *commit*.
 
-### * GNU/Linux
+### GNU/Linux
 
 Para subir los archivos en local, nos desplazamos al directorio y añadimos los archivos al repositorio local:
 
