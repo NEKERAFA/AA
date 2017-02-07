@@ -1,0 +1,47 @@
+y = mat2cell(A,dim1Dist,...,dimNDist)
+A -> Matriz
+dim1Dist,...,dimNDist -> Vectores numéricos que describen como se divide
+			cada dimensión de A
+
+y = mat2cell(A,1, diff([0:n:numel(A)-1 numel(A)]));
+A es la matriz
+1 es una de las dos dimensiones a dividir
+diff([0:n:numel(A)-1 numel(A)]) es la segunda dimensión a dividir
+0:n:numel(A)-1 genera un vector de 0 a la longitud de A - 1 con paso n
+		n entonces es el tamaño máximo de los subvectores
+numel(A) se le añade al final, corrigiendo posibles diferencias de tamaño
+diff se aplica al vector generado para calcular las diferencias entre
+los elementos adyacentes
+
+Ej: A = [1:20]
+(A =
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20)
+n = 3
+
+0:n:numel(A)-1 =
+     0 3 6 9 12 15 18
+añadiéndole numel(A):
+     0 3 6 9 12 15 18 20
+diff =
+     3 3 3 3 3 3 2
+
+Por lo tanto "y" estará formado por subvectores de A de tamaño 3
+y uno de tamaño 2.
+
+//-------------------------------------------------------------------------------
+Por cada sujeto
+    Por cada marco
+	Entradas(1,marco) = Media EEG
+	Entradas(2,marco) = Desviación típica EEG
+	Entradas(3,marco) = Media Temp
+	SalidasDeseadas será una matriz con tantas salidas como estados
+		a clasificar (e), con un 1 solamente en la clase correcta
+	SalidasDeseadas(:,marco) = zeros(1,e);
+	SalidasDeseadas(e,marco) = 1;
+	n_sujeto++;
+
+Entradas no se que hace
+SalidasDeseadas igual
+
+rna = patternnet(hiddenSize);
+rna = train(rna, Entradas, SalidasDeseadas);
