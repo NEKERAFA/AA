@@ -1,4 +1,5 @@
-- Investigar cómo guardar información calculada a partir de los datos en la BD
-- Investigar cómo analizar los datos por ventanas de unos 20-30s
-- Transformada de Fourier del EEG, calcular media y desviación típica, guardar y analizar
+﻿- Transformada de Fourier del EEG, calcular media y desviación típica, guardar y analizar
 - Mirar cambios de temperatura para detectar DORMIDO/DESPIERTO
+- Normalizar señales
+- Guardar salida del hypnograma
+- Función para entrenar
