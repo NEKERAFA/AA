@@ -40,8 +40,8 @@ Por cada sujeto
 	SalidasDeseadas(e,marco) = 1;
 	n_sujeto++;
 
-Entradas no se que hace
-SalidasDeseadas igual
+Aquí, si hemos utilizado más filas de las necesarias en Entradas y Salidas,
+cogemos sólo las que tienen info.
 
 rna = patternnet(hiddenSize);
 rna = train(rna, Entradas, SalidasDeseadas);
