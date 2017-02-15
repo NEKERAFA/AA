@@ -12,7 +12,7 @@ function entrenar(nombre)
     % Obtener el nombre de los sujetos en la bd
     nombre_sujetos = fieldnames(bd_datos);
     
-    % Número de estados a clasificar
+    % NÃºmero de estados a clasificar
     n_estados = 2;
     
     % Capas ocultas
@@ -21,10 +21,9 @@ function entrenar(nombre)
     % Como se recorre la BD
     % Para cada sujeto
     for i=1:length(nombre_sujetos)
-        % Número de marcos
+        % NÃºmero de marcos
         n_marcos = length(bd_datos.(nombre_sujetos{i}).(temp));
         sujeto = bd_datos.(nombre_sujetos{i});
-        sujeto.(salidas_deseadas) = ceil(sujeto.(salidas_deseadas)*0.1);
         % Para cada marco
         for marco=1:n_marcos
             Entradas(1, marco) = sujeto.(temp)(marco);
