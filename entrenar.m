@@ -6,6 +6,12 @@ function entrenar(nombre)
     % Nombre del campo temperatura
     temp = 'Temp_body';
     
+    % Nombre del campo media EEG
+    eeg_mean = 'EEG_Fpz_Cz_mean';
+    
+    % Nombre del campo desviación típica EEG
+    eeg_desv = 'EEG_Fpz_Cz_std';
+    
     % Nombre del campo del hypnograma
     salidas_deseadas = 'Hypnogram';
 
@@ -16,7 +22,7 @@ function entrenar(nombre)
     n_estados = 2;
     
     % Capas ocultas
-    hiddenSize = [3];
+    hiddenSize = [6 3];
     
     % Como se recorre la BD
     % Para cada sujeto
@@ -27,8 +33,8 @@ function entrenar(nombre)
         % Para cada marco
         for marco=1:n_marcos
             Entradas(1, marco) = sujeto.(temp)(marco);
-            %Entradas(2, marco) = media_eeg
-            %Entradas(3, marco) = desv_eeg
+            Entradas(2, marco) = sujeto.(eeg_desv)(marco);
+            Entradas(3, marco) = sujeto.(eeg_mean)(marco);
             SalidasDeseadas(:,marco) = zeros(1, n_estados);
             estado = sujeto.(salidas_deseadas)(marco);
             SalidasDeseadas(estado+1,marco) = 1;

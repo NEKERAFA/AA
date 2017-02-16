@@ -39,7 +39,7 @@ function [ media_v, desv_v ] = analizar_EEG( eeg_v, n )
         transformada = fft(marcos{i}(1:L/2));
         
         % Calculamos su media
-        media_v(i) = mean(transformada);
+        media_v(i) = abs(mean(transformada));
         
         % Calculamos su deviación típica
         desv_v(i) = std(transformada);
