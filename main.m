@@ -19,7 +19,7 @@ analizar_bd(bd, bd_proc);
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
-[entradas, salidas_deseadas] = procesar_patrones(bd_proc);
+[entradas, salidas_deseadas] = procesado_patrones(bd_proc);
 
 % Entrenamos el clasificador varias veces
 for i=1:n
@@ -32,7 +32,10 @@ for i=1:n
     end
     
     % Entrenamos el clasificador
-    entrenar(entradas, salidas_deseadas, hiddenSize);
+    [rna, tr] = entrenar(entradas, salidas_deseadas, hiddenSize);
+    targets = entradas(:,tr.trainInd);
+    outputs = rna(targets);
+    confusion(targets, outputs);
 end
 
 % TODO evaluar la bondad del clasificador
