@@ -45,3 +45,5 @@ cogemos sólo las que tienen info.
 
 rna = patternnet(hiddenSize);
 rna = train(rna, Entradas, SalidasDeseadas);
+
+Para precisión hay que usar la función confusion.
