@@ -5,7 +5,7 @@ bd = 'sleep-EDF';
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 50;
+n = 15;
 
 % Tipo de clasificador
 type = 'rna';
@@ -21,6 +21,9 @@ analizar_bd(bd, bd_proc);
 disp('Preparando entradas y salidas deseadas...');
 [entradas, salidas_deseadas] = procesado_patrones(bd_proc);
 
+% Fracción de muestras mal clasificadas
+conf = 0;
+
 % Entrenamos el clasificador varias veces
 for i=1:n
     % Dividimos los patrones en conjuntos de entrenamiento y test
@@ -33,9 +36,11 @@ for i=1:n
     
     % Entrenamos el clasificador
     [rna, tr] = entrenar(entradas, salidas_deseadas, hiddenSize);
-    targets = entradas(:,tr.trainInd);
+    targets = entradas(:,tr.testInd);
     outputs = rna(targets);
-    confusion(targets, outputs);
+    conf = conf + confusion(salidas_deseadas(:,tr.testInd), outputs);
 end
 
+% Media de las confusiones
+conf = conf/n;
 % TODO evaluar la bondad del clasificador

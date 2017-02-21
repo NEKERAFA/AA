@@ -4,6 +4,9 @@ function [ media_v ] = analizar_temp( temp_v, n )
 %       analizar_temp( temp_v, n )
 %           · temp_v: Vector columna con los datos de las temperaturas
 %           · n: Número de muestras
+    % Se normalizan los valores de la temperatura
+    temp_v = normalizar_temp(temp_v);
+
     % Se obtiene el vector con las posiciones que indican el inicio de cada
     % marco
     pos_marcos = [0:n:length(temp_v)-1 length(temp_v)];
