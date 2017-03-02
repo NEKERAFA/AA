@@ -43,4 +43,3 @@ end
 
 % Media de las confusiones
 conf = conf/n;
-% TODO evaluar la bondad del clasificador

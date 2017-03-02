@@ -17,7 +17,6 @@ function analizar_bd( nombre, salida )
     
     % Nombre del campo del electroencefalograma
     eeg = 'EEG_Fpz_Cz';
-    
     % Obtener el nombre de los sujetos en la bd
     nombre_sujetos = fieldnames(bd_entrada);
 
@@ -28,44 +27,23 @@ function analizar_bd( nombre, salida )
     bd_salida = struct;
     
     % Como se recorre la BD
-    for i = 1:length(nombre_sujetos)
+    for i=1:length(nombre_sujetos)
         % Obtenemos el sujeto
         sujeto = bd_entrada.(nombre_sujetos{i});
         disp(strcat('Analizando sujeto', {' '}, nombre_sujetos{i}));
-        
         % Miramos si el sujeto tiene el campo temperatura
         if isfield(sujeto, temp)
             % Analizamos la temperatura del sujeto
             temp_sujeto = analizar_temp(sujeto.(temp), marco_temp);
-            
-            % Analizamos la media y la desviación típica de la
-            % tranformada de fourier del electroencefalograma
-            [media_sujeto, desviacion_sujeto] = analizar_EEG(sujeto.(eeg), marco_eeg);
-            
-            % Hipnograma
-            hypnogram_sujeto = ceil(sujeto.(sleep)*0.1);
-            
-            % Contador de las posiciones borradas
-            borrados = 0;
-            
-            % Eliminamos los marcos con valor erróneo en el hipnograma
-            for j = 1:length(sujeto.(sleep))
-                if sujeto.(sleep)(j) == 9
-                    temp_sujeto(j-borrados) = [];
-                    media_sujeto(j-borrados) = [];
-                    desviacion_sujeto(j-borrados) = [];
-                    hypnogram_sujeto(j-borrados) = [];
-                    borrados = borrados+1;
-                end
-            end
-            
             % Añadimos el campo a la bd de salida
             bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
+            % Analizamos la media y la desviación típica
+            [media_sujeto, desviacion_sujeto] = analizar_EEG(sujeto.(eeg), marco_eeg);
             % Añadimos los campos a la bd
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean')) = media_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_std')) = desviacion_sujeto;
             % Añadimos a la bd si el sujeto está despierto o dormido
-            bd_salida.(nombre_sujetos{i}).(sleep) = hypnogram_sujeto;
+            bd_salida.(nombre_sujetos{i}).(sleep) = ceil(sujeto.(sleep)*0.1);
         end
     end
 

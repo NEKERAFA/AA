@@ -5,6 +5,9 @@ function [ media_v, desv_v ] = analizar_EEG( eeg_v, n )
 %           · eeg_v: Vector columna con los datos del electroencefalograma
 %           · n: Número de muestras
 
+    % Prueba (borrar luego)
+    %eeg_v = normalizar_temp(eeg_v);
+    
     % Se obtiene el vector con las posiciones que indican el inicio de cada
     % marco
     pos_marcos = [0:n:length(eeg_v)-1 length(eeg_v)];
