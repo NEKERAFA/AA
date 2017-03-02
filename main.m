@@ -5,7 +5,7 @@ bd = 'sleep-EDF';
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 50;
+n = 10;
 
 % Tipo de clasificador
 type = 'rna';
@@ -22,8 +22,11 @@ disp('Preparando entradas y salidas deseadas...');
 [entradas, salidas_deseadas] = procesado_patrones(bd_proc);
 
 % Fracción de muestras mal clasificadas
-conf = 0;
+conf = zeros(1,n);
+
 mejor_conf = 1;
+
+
 % Entrenamos el clasificador varias veces
 for i=1:n
     % Dividimos los patrones en conjuntos de entrenamiento y test
@@ -46,10 +49,12 @@ for i=1:n
         mejor_conf = conf_actual;
     end
     
-    conf = conf + conf_actual;
+    conf(i) = conf_actual;
 end
 
 % Media de las confusiones
-conf = conf/n;
+%conf = conf/n;
+mean_conf = mean2(conf);
+desv_conf = std(conf);
 
 plotconfusion(mejor_target,mejor_outputs);
