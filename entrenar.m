@@ -7,6 +7,3 @@ function [rna, tr] = entrenar(entradas, salidas, hiddenSize)
     % Comenzamos el entrenamiento con las Entradas y Salidas calculadas
     [rna, tr] = train(rna, entradas, salidas);
 end
-
-% inputs(:,tr.trainInd);
-        
