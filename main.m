@@ -1,5 +1,7 @@
+clear all; close all; home;
+
 % BD de entrada
-bd = 'sleep-EDF';
+bd = 'sleep';
 
 % BD procesada
 bd_proc = 'bd_proc';
