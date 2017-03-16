@@ -30,7 +30,7 @@ function analizar_bd_3_salidas( nombre, salida )
     for i=1:length(nombre_sujetos)
         % Obtenemos el sujeto
         sujeto = bd_entrada.(nombre_sujetos{i});
-        disp(strcat('Analizando sujeto', {' '}, nombre_sujetos{i}));
+        fprintf('Analizando sujeto %s\n', nombre_sujetos{i});
         % Miramos si el sujeto tiene el campo temperatura
         if isfield(sujeto, temp)
             % Analizamos la temperatura del sujeto

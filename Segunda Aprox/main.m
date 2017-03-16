@@ -17,7 +17,7 @@ hiddenSize = [5 4];
 
 % Procesamos los datos de la BD de entrada
 %disp('Analizando BD de entrada...');
-%analizar_bd_3_salidas(bd, bd_proc);
+analizar_bd_3_salidas(bd, bd_proc);
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
@@ -40,6 +40,7 @@ for i=1:n
     end
     
     % Entrenamos el clasificador
+    fprintf('Entrenamiento %d\n', i);
     [rna, tr] = entrenar(entradas, salidas_deseadas, hiddenSize);
     targets = entradas(:,tr.testInd);
     outputs = rna(targets);
