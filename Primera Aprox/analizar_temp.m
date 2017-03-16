@@ -1,9 +1,10 @@
 function [ media_v ] = analizar_temp( temp_v, n )
 %analizar_temp Obtiene las medias de las temperaturas en marcos de n
-%muestras
+% muestras
 %       analizar_temp( temp_v, n )
 %           · temp_v: Vector columna con los datos de las temperaturas
 %           · n: Número de muestras
+
     % Se normalizan los valores de la temperatura
     temp_v = normalizar_temp(temp_v);
 

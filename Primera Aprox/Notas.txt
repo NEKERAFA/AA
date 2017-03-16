@@ -48,6 +48,19 @@ rna = train(rna, Entradas, SalidasDeseadas);
 
 Para precisión hay que usar la función confusion.
 
+// ------------------------------------------------------------------------------
+% Pruebas de como coger el fft
+% Xdef = fft(marcos{1});
+% fs = 100;
+% L = length(marcos{1});
+% f=-fs/2+fs/L:fs/L:fs/2;
+% plot(f(1:L/2), abs(Xdef(1:L/2))/max(abs(Xdef(1:L/2))));
+
+% Hay que hacerle un fftshift a fft en el momento de representar
+% para que ordene las frecuencias de forma ascendente:
+% The result of fft is (in your notation) indices (0:N-1)
+% fftshift simply converts that to [(N/2:N-1) (0:(N/2-1))]
+
 //-------------------------------------------------------------------------------
 n = randi(length(salidas_training),6000,1);
 model = fitcsvm(entradas_training(n, :), salidas_training(n));
