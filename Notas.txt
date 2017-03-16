@@ -47,3 +47,7 @@ rna = patternnet(hiddenSize);
 rna = train(rna, Entradas, SalidasDeseadas);
 
 Para precisión hay que usar la función confusion.
+
+//-------------------------------------------------------------------------------
+n = randi(length(salidas_training),6000,1);
+model = fitcsvm(entradas_training(n, :), salidas_training(n));
