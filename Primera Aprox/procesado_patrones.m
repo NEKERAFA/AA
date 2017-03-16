@@ -8,8 +8,12 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
     
     % Nombre del campo media EEG
     eeg_mean = 'EEG_Fpz_Cz_mean';
+    %eeg_mean = 'EEG_Pz_Oz_mean';
+    
     % Nombre del campo desviación típica EEG
     eeg_desv = 'EEG_Fpz_Cz_std';
+    %eeg_desv = 'EEG_Pz_Oz_std';
+    
     % Nombre del campo del hypnograma
     salidas_deseadas = 'Hypnogram';
 
@@ -57,10 +61,10 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
         end
     end
     
-    % Si son 2 estados llega con la primera fila
-    if (n_estados==2)
-        SalidasDeseadas = SalidasDeseadas(1,:);
-    end
+    % Si son 2 estados llega con la primera fila (para la rna)
+    %if (n_estados==2)
+    %    SalidasDeseadas = SalidasDeseadas(1,:);
+    %end
 
 end
 

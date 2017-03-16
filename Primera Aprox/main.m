@@ -1,19 +1,17 @@
-clear all; close all; home;
-
 % BD de entrada
-bd = 'sleep';
+bd = 'sleep-EDF';
 
 % BD procesada
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 10;
+n = 1;
 
 % Tipo de clasificador
 type = 'rna';
 
 % Capas ocultas en RNA
-hiddenSize = [6 3];
+hiddenSize = [8 3];
 
 % Procesamos los datos de la BD de entrada
 %disp('Analizando BD de entrada...');
@@ -24,7 +22,7 @@ disp('Preparando entradas y salidas deseadas...');
 [entradas, salidas_deseadas] = procesado_patrones(bd_proc);
 
 % Fracción de muestras mal clasificadas
-conf = zeros(1,n);
+conf = zeros(3,n);
 
 mejor_conf = 1;
 
@@ -41,22 +39,35 @@ for i=1:n
     
     % Entrenamos el clasificador
     [rna, tr] = entrenar(entradas, salidas_deseadas, hiddenSize);
-    targets = entradas(:,tr.testInd);
-    outputs = rna(targets);
-    conf_actual = confusion(salidas_deseadas(:,tr.testInd), outputs);
-    if (conf_actual < mejor_conf)
+    valRatio = rna.divideParam.valRatio;
+    testRatio = rna.divideParam.testRatio;
+    targets_test = entradas(:,tr.testInd);
+    targets_train = entradas(:,tr.trainInd);
+    targets_val = entradas(:,tr.valInd);
+    outputs_test = rna(targets_test);
+    outputs_train = rna(targets_train);
+    outputs_val = rna(targets_val);
+    conf_actual_test = confusion(salidas_deseadas(:,tr.testInd), outputs_test);
+    conf_actual_train = confusion(salidas_deseadas(:,tr.trainInd), outputs_train);
+    conf_actual_val = confusion(salidas_deseadas(:,tr.valInd), outputs_val);
+    conf(1,i) = conf_actual_test;
+    conf(2,i) = conf_actual_train;
+    conf(3,i) = conf_actual_val;
+    if (conf_actual_test < mejor_conf)
         mejor_rna = rna;
-        mejor_target = salidas_deseadas(:,tr.testInd);
-        mejor_outputs = outputs;
-        mejor_conf = conf_actual;
+        mejor_target_test = salidas_deseadas(:,tr.testInd);
+        mejor_outputs = outputs_test;
+        mejor_conf = conf_actual_test;
     end
-    
-    conf(i) = conf_actual;
 end
 
 % Media de las confusiones
 %conf = conf/n;
-mean_conf = mean2(conf);
-desv_conf = std(conf);
+mean_conf_test = mean2(conf(1,:));
+mean_conf_train = mean2(conf(2,:));
+mean_conf_val = mean2(conf(3,:));
+desv_conf_test = std(conf(1,:));
+desv_conf_train = std(conf(2,:));
+desv_conf_val = std(conf(3,:));
 
-plotconfusion(mejor_target,mejor_outputs);
+plotconfusion(mejor_target_test,mejor_outputs_test);
