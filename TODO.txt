@@ -1,5 +1,0 @@
-﻿- Transformada de Fourier del EEG, calcular media y desviación típica, guardar y analizar
-- Mirar cambios de temperatura para detectar DORMIDO/DESPIERTO
-- Normalizar señales
-- Guardar salida del hypnograma
-- Función para entrenar
