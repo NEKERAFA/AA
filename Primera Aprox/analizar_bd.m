@@ -17,6 +17,8 @@ function analizar_bd( nombre, salida )
     
     % Nombre del campo del electroencefalograma
     eeg = 'EEG_Fpz_Cz';
+    %eeg = 'EEG_Pz_Oz';
+    
     % Obtener el nombre de los sujetos en la bd
     nombre_sujetos = fieldnames(bd_entrada);
 
