@@ -48,7 +48,6 @@ rna = train(rna, Entradas, SalidasDeseadas);
 
 Para precisión hay que usar la función confusion.
 
-
 // ------------------------------------------------------------------------------
 % Pruebas de como coger el fft
 % Xdef = fft(marcos{1});
@@ -61,3 +60,7 @@ Para precisión hay que usar la función confusion.
 % para que ordene las frecuencias de forma ascendente:
 % The result of fft is (in your notation) indices (0:N-1)
 % fftshift simply converts that to [(N/2:N-1) (0:(N/2-1))]
+
+//-------------------------------------------------------------------------------
+n = randi(length(salidas_training),6000,1);
+model = fitcsvm(entradas_training(n, :), salidas_training(n));
