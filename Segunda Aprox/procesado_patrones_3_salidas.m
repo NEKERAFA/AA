@@ -1,4 +1,4 @@
-function [ Entradas, SalidasDeseadas ] = procesado_patronesPRUEBA(nombre)
+function [ Entradas, SalidasDeseadas ] = procesado_patrones_3_salidas(nombre)
 
     disp('Cargando datos')
     bd_datos = load(nombre);
@@ -41,8 +41,7 @@ function [ Entradas, SalidasDeseadas ] = procesado_patronesPRUEBA(nombre)
         
         % Sujeto correspondiente a esta iteracion
         sujeto = bd_datos.(nombre_sujetos{i});
-        %
-        SalidasDeseadas = sujeto.(salidas_deseadas);
+
         % Para cada marco
         for marco=1:n_marcos
             % Asignamos 3 valores a la entrada correspondiente a este marco
@@ -53,7 +52,7 @@ function [ Entradas, SalidasDeseadas ] = procesado_patronesPRUEBA(nombre)
             %estado = sujeto.(salidas_deseadas)(marco);
             % La marcamos en la matriz de salidas deseadas
             % estado+1 para pasar de 0-1 a 1-2 (salidas no admite 0)
-            %SalidasDeseadas(estado+1,patron) = 1;
+            SalidasDeseadas(:, patron) = sujeto.(salidas_deseadas)(:, marco);
             % Siguiente patron
             patron = patron + 1;
         end

@@ -1,4 +1,4 @@
-function analizar_bd( nombre, salida )
+function analizar_bd_3_salidas( nombre, salida )
 %analizar_bd Lee de una bd y procesa los campos
     % Cargar la BD
     disp('Cargando BD');
