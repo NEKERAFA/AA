@@ -1,5 +1,8 @@
+clear all;
+close all;
+
 % BD de entrada
-bd = 'sleep-EDF';
+bd = 'sleep-clean';
 
 % BD procesada
 bd_proc = 'bd_proc';
@@ -9,7 +12,7 @@ n = 50;
 
 % Procesamos los datos de la BD de entrada
 %disp('Analizando BD de entrada...');
-%analizar_bd(bd, bd_proc);
+analizar_bd(bd, bd_proc);
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
@@ -22,7 +25,7 @@ conf = zeros(1,n);
 
 mejor_conf = 1;
 
-% entradas = entradas';
+entradas = entradas';
 % Entrenamos el clasificador varias veces
 for i=1:n
     % Entrenamos el clasificador  
