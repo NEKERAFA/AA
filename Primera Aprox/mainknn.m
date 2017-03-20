@@ -2,7 +2,7 @@ clear all;
 close all;
 
 % BD de entrada
-bd = 'sleep-clean';
+bd = 'sleep-EDF';
 
 % BD procesada
 bd_proc = 'bd_proc';
