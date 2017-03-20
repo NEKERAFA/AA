@@ -61,6 +61,7 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
         end
     end
     
+    %% Podemos sacarlo al main de RNA y así sirve para todos los métodos
     % Si son 2 estados llega con la primera fila (para la rna)
     %if (n_estados==2)
     %    SalidasDeseadas = SalidasDeseadas(1,:);

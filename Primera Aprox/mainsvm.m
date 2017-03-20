@@ -7,12 +7,6 @@ bd_proc = 'bd_proc';
 % Numero de veces que se entrena el clasificador
 n = 10;
 
-% Tipo de clasificador
-type = 'rna';
-
-% Capas ocultas en RNA
-hiddenSize = [5 4];
-
 % Procesamos los datos de la BD de entrada
 %disp('Analizando BD de entrada...');
 %analizar_bd(bd, bd_proc);
