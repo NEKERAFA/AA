@@ -37,15 +37,32 @@ function analizar_bd( nombre, salida )
         if isfield(sujeto, temp)
             % Analizamos la temperatura del sujeto
             temp_sujeto = analizar_temp(sujeto.(temp), marco_temp);
-            % Añadimos el campo a la bd de salida
-            bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             % Analizamos la media y la desviación típica
             [media_sujeto, desviacion_sujeto] = analizar_EEG(sujeto.(eeg), marco_eeg);
+            
+            % Cogemos el hipnograma
+            hypnogram_sujeto = sujeto.(sleep);
+            
+            % Eliminamos los marcos con valor erróneo en el hipnograma
+            % Contador de las posiciones borradas
+            borrados = 0;
+            for j = 1:length(sujeto.(sleep))
+                if sujeto.(sleep)(j) == 9
+                    temp_sujeto(j-borrados) = [];
+                    media_sujeto(j-borrados) = [];
+                    desviacion_sujeto(j-borrados) = [];
+                    hypnogram_sujeto(j-borrados) = [];
+                    borrados = borrados+1;
+                end
+            end
+            
+            % Añadimos el campo a la bd de salida
+            bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             % Añadimos los campos a la bd
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean')) = media_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_std')) = desviacion_sujeto;
             % Añadimos a la bd si el sujeto está despierto o dormido
-            bd_salida.(nombre_sujetos{i}).(sleep) = ceil(sujeto.(sleep)*0.1);
+            bd_salida.(nombre_sujetos{i}).(sleep) = ceil(hypnogram_sujeto*0.1);
         end
     end
 
