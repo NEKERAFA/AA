@@ -1,3 +1,6 @@
+clear all;
+close all;
+
 % BD de entrada
 bd = 'sleep-EDF';
 
