@@ -19,6 +19,9 @@ function analizar_bd_3_salidas( nombre, salida )
     eeg = 'EEG_Fpz_Cz';
     % Obtener el nombre de los sujetos en la bd
     nombre_sujetos = fieldnames(bd_entrada);
+    
+    % Nombre del campo del oculograma
+    oeg = 'EOG_horizontal';
 
     % Nombre del hipnograma (Utilizado para la salida deseada)
     sleep = 'Hypnogram';
