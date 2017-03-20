@@ -40,13 +40,16 @@ function analizar_bd( nombre, salida )
             % Analizamos la media y la desviación típica
             [media_sujeto, desviacion_sujeto] = analizar_EEG(sujeto.(eeg), marco_eeg);
             
-            % Cogemos el hipnograma
-            hypnogram_sujeto = sujeto.(sleep);
-            
             % Eliminamos los marcos con valor erróneo en el hipnograma
             % Contador de las posiciones borradas
             borrados = 0;
-            for j = 1:length(sujeto.(sleep))
+            
+            % Nos aseguramos que el hipnograma tiene la misma longitud que
+            % el resto de datos
+            longitud_marcos = min(length(media_sujeto), length(sujeto.(sleep)));
+            hypnogram_sujeto = sujeto.(sleep)(1:longitud_marcos);
+            
+            for j = 1:longitud_marcos
                 if sujeto.(sleep)(j) == 9
                     temp_sujeto(j-borrados) = [];
                     media_sujeto(j-borrados) = [];
