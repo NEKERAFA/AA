@@ -1,4 +1,5 @@
-clear all; close all; home
+clear all;
+close all;
 
 % BD de entrada
 bd = 'sleep';
@@ -7,7 +8,7 @@ bd = 'sleep';
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 50;
+n = 10;
 
 % Tipo de clasificador
 type = 'rna';
@@ -17,11 +18,11 @@ hiddenSize = [5 4];
 
 % Procesamos los datos de la BD de entrada
 %disp('Analizando BD de entrada...');
-analizar_bd_3_salidas(bd, bd_proc);
+%analizar_bd(bd, bd_proc);
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
-[entradas, salidas_deseadas] = procesado_patrones_3_salidas(bd_proc);
+[entradas, salidas_deseadas] = procesado_patrones(bd_proc);
 
 % Fracción de muestras mal clasificadas
 conf = zeros(1,n);

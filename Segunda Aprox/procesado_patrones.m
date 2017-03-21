@@ -8,12 +8,8 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
     
     % Nombre del campo media EEG
     eeg_mean = 'EEG_Fpz_Cz_mean';
-    %eeg_mean = 'EEG_Pz_Oz_mean';
-    
     % Nombre del campo desviación típica EEG
     eeg_desv = 'EEG_Fpz_Cz_std';
-    %eeg_desv = 'EEG_Pz_Oz_std';
-    
     % Nombre del campo del hypnograma
     salidas_deseadas = 'Hypnogram';
 
@@ -21,7 +17,7 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
     nombre_sujetos = fieldnames(bd_datos);
     
     % Numero de estados a clasificar
-    n_estados = 2;
+    n_estados = 3;
     
     % Calculamos el num de patrones totales
     n_patrones = 0;
@@ -45,6 +41,7 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
         
         % Sujeto correspondiente a esta iteracion
         sujeto = bd_datos.(nombre_sujetos{i});
+
         % Para cada marco
         for marco=1:n_marcos
             % Asignamos 3 valores a la entrada correspondiente a este marco
@@ -52,19 +49,13 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
             Entradas(2, patron) = sujeto.(eeg_desv)(marco);
             Entradas(3, patron) = sujeto.(eeg_mean)(marco);
             % Obtenemos del hypnograma la salida deseada para este marco
-            estado = sujeto.(salidas_deseadas)(marco);
+            %estado = sujeto.(salidas_deseadas)(marco);
             % La marcamos en la matriz de salidas deseadas
             % estado+1 para pasar de 0-1 a 1-2 (salidas no admite 0)
-            SalidasDeseadas(estado+1,patron) = 1;
+            SalidasDeseadas(:, patron) = sujeto.(salidas_deseadas)(:, marco);
             % Siguiente patron
             patron = patron + 1;
         end
     end
-    
-    % Si son 2 estados llega con la primera fila (para la rna)
-    %if (n_estados==2)
-    %    SalidasDeseadas = SalidasDeseadas(1,:);
-    %end
-
 end
 

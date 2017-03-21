@@ -17,8 +17,6 @@ function analizar_bd( nombre, salida )
     
     % Nombre del campo del electroencefalograma
     eeg = 'EEG_Fpz_Cz';
-    %eeg = 'EEG_Pz_Oz';
-    
     % Obtener el nombre de los sujetos en la bd
     nombre_sujetos = fieldnames(bd_entrada);
 
@@ -45,7 +43,7 @@ function analizar_bd( nombre, salida )
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean')) = media_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_std')) = desviacion_sujeto;
             % Añadimos a la bd si el sujeto está despierto o dormido
-            bd_salida.(nombre_sujetos{i}).(sleep) = ceil(sujeto.(sleep)*0.1);
+            bd_salida.(nombre_sujetos{i}).(sleep) = analizar_fases(sujeto.(sleep));
         end
     end
 
