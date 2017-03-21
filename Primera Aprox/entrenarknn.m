@@ -7,7 +7,7 @@ function [model, particion] = entrenarknn(entradas, salidas)
     % Dividimos entrenamiento y test
     % Nos quedamos solo con la primera fila de salidas
     salidas = salidas(1,:);
-    particion = cvpartition(salidas, 'holdout',1/3);
+    particion = cvpartition(salidas, 'holdout',0.15);
     entradas_training = entradas(particion.training(1),:);
     salidas_training = salidas(particion.training(1));
     
