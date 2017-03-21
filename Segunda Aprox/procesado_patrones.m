@@ -48,10 +48,7 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
             Entradas(1, patron) = sujeto.(temp)(marco);
             Entradas(2, patron) = sujeto.(eeg_desv)(marco);
             Entradas(3, patron) = sujeto.(eeg_mean)(marco);
-            % Obtenemos del hypnograma la salida deseada para este marco
-            %estado = sujeto.(salidas_deseadas)(marco);
-            % La marcamos en la matriz de salidas deseadas
-            % estado+1 para pasar de 0-1 a 1-2 (salidas no admite 0)
+            % Obtenemos las salidas deseadas
             SalidasDeseadas(:, patron) = sujeto.(salidas_deseadas)(:, marco);
             % Siguiente patron
             patron = patron + 1;
