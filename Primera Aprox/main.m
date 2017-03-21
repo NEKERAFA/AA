@@ -5,7 +5,7 @@ close all;
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 5;
+n = 50;
 
 % Capas ocultas en RNA
 hiddenSize = [8 3];
@@ -67,4 +67,4 @@ desv_conf_test = std(conf(1,:));
 desv_conf_train = std(conf(2,:));
 desv_conf_val = std(conf(3,:));
 
-plotconfusion(mejor_target_test,mejor_outputs_test);
+plotconfusion(mejor_target_test,mejor_outputs);

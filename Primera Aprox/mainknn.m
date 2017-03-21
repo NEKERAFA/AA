@@ -50,6 +50,8 @@ for i=1:n
     if (confusiones_test < mejor_conf)
         mejor_knn = model;
         mejor_particion = particion;
+        mejor_target = salidas_deseadas_test;
+        mejor_outputs = salidas_test';
         mejor_conf = confusiones_test;
     end
 end
