@@ -73,4 +73,4 @@ desv_conf_test = std(conf(1,:));
 desv_conf_train = std(conf(2,:));
 desv_conf_val = std(conf(3,:));
 
-plotconfusion(mejor_target_test,mejor_outputs_test);
+plotconfusion(mejor_target_test,mejor_outputs);

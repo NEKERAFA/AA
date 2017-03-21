@@ -8,7 +8,7 @@ bd = 'sleep-EDF';
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 10;
+n = 1;
 
 % Procesamos los datos de la BD de entrada
 %disp('Analizando BD de entrada...');
@@ -30,12 +30,6 @@ entradas = entradas';
 for i=1:n
     % Dividimos los patrones en conjuntos de entrenamiento y test
     % No necesario en RNA
-    if ~strcmp(type, 'rna') 
-        disp('Dividiendo en conjuntos de entrenamiento y test...')
-        % Aqui futura funcion que divida en conjuntos de entrenamiento y
-        % test
-        
-    end
     
     % Entrenamos el clasificador
     
@@ -52,8 +46,8 @@ for i=1:n
     
     % Probamos los patrones de test
     disp('Probando los patrones de test y train');
-    [salidas_test scores_test] = predict(model, entradas_test);
-    [salidas_train scores_train] = predict(model, entradas_train);
+    [salidas_test, scores_test] = predict(model, entradas_test);
+    [salidas_train, scores_train] = predict(model, entradas_train);
     
     confusiones_test = confusion(salidas_deseadas_test, salidas_test');
     confusiones_train = confusion(salidas_deseadas_train, salidas_train');
@@ -65,8 +59,11 @@ for i=1:n
     if (confusiones_test < mejor_conf)
         mejor_svm = model;
         mejor_particion = particion;
-        %mejor_target = salidas_deseadas(:,tr.testInd);
-        %mejor_outputs = outputs;
+        %Añadir esto:
+        %------------------------------------
+        mejor_target = salidas_deseadas_test;
+        mejor_outputs = salidas_test';
+        %------------------------------------
         mejor_conf = confusiones_test;
     end
 end
@@ -77,5 +74,4 @@ mean_conf_test = mean2(conf(1,:));
 mean_conf_train = mean2(conf(2,:));
 desv_conf_test = std(conf(1,:));
 desv_conf_train = std(conf(2,:));
-
-%plotconfusion(mejor_target,mejor_outputs);
+plotconfusion(mejor_target,mejor_outputs);

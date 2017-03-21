@@ -17,5 +17,5 @@ function [model, particion] = entrenarsvm(entradas, salidas)
     disp('Configurando la svm');
     %rna = patternnet([8]);
     %[model, confusiones_test] = train(rna, entradas_training', salidas_training');
-    model = fitcsvm(entradas_training, salidas_training);
+    model = fitcsvm(entradas_training, salidas_training, 'KernelFunction', 'rbf');
 end
