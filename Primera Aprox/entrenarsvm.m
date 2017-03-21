@@ -4,18 +4,14 @@ function [model, particion] = entrenarsvm(entradas, salidas)
     % salidas_deseadas: nº estados x nº patrones = 2 x N
 
     disp('Empezando entrenamiento');
-    %entradas = entradas';
     % Dividimos entrenamiento y test
     salidas = salidas(1,:);
     % Nos quedamos solo con la primera fila de salidas
-    particion = cvpartition(salidas, 'holdout',1/3);
+    particion = cvpartition(salidas, 'holdout',0.15);
     entradas_training = entradas(particion.training(1),:);
-    %salidas_training = salidas(particion.training(1),:);
     salidas_training = salidas(particion.training(1));
     
     % Configuramos la svm
     disp('Configurando la svm');
-    %rna = patternnet([8]);
-    %[model, confusiones_test] = train(rna, entradas_training', salidas_training');
-    model = fitcsvm(entradas_training, salidas_training);
+    model = fitcsvm(entradas_training, salidas_training, 'KernelFunction', 'rbf');
 end

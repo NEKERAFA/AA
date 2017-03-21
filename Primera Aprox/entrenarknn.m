@@ -9,7 +9,6 @@ function [model, particion] = entrenarknn(entradas, salidas)
     salidas = salidas(1,:);
     particion = cvpartition(salidas, 'holdout',1/3);
     entradas_training = entradas(particion.training(1),:);
-    %salidas_training = salidas(particion.training(1),:);
     salidas_training = salidas(particion.training(1));
     
     % Configuramos el sistema
