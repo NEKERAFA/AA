@@ -4,7 +4,7 @@ function [models, particion] = entrenarsvm(entradas, salidas)
 
     disp('Empezando entrenamiento');
     % Dividimos entrenamiento y test
-    particion = cvpartition(salidas(1, :), 'holdout', 1/3);
+    particion = cvpartition(salidas(1, :), 'holdout', 0.15);
     
     % Cogemos los datos de entrenamiento
     entradas_training = entradas(:, particion.training(1));
@@ -16,7 +16,7 @@ function [models, particion] = entrenarsvm(entradas, salidas)
         
         % Configuramos la svm
         fprintf('Configurando la svm de la clase %d\n', clase);
-        svm = fitcsvm(entradas_training', salidas_training');
+        svm = fitcsvm(entradas_training', salidas_training', 'KernelFunction', 'rbf');
         models{clase} = svm;
     end
 end
