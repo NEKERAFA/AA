@@ -5,7 +5,7 @@ close all;
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 1;
+n = 10;
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
@@ -32,7 +32,7 @@ for i=1:n
     for clase = 1:size(salidas_deseadas)
         % Cogemos las entradas de test
         [clases, scores_clase] = predict(models{clase}, entradas');
-        scores(:, clase) = scores_clase(:, 1);
+        scores(:, clase) = scores_clase(:, 2);
     end
     
     % Recorremos los patrones para saber de que clase es
@@ -49,6 +49,8 @@ for i=1:n
     salidas_deseadas_train = salidas_deseadas(particion.training(1), :);
     salidas_test = salidas(particion.test(1), :);
     salidas_train = salidas(particion.training(1), :);
+    % Lo permuto para que no haga cosas raras en la siguiente iteración
+    salidas_deseadas = salidas_deseadas';
     
     confusiones_test = confusion(salidas_deseadas_test', salidas_test');
     confusiones_train = confusion(salidas_deseadas_train', salidas_train');
