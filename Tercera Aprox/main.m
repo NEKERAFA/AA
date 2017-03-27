@@ -14,7 +14,7 @@ n = 10;
 type = 'rna';
 
 % Capas ocultas en RNA
-hiddenSize = [8 3];
+hiddenSize = 8;
 
 % Procesamos los datos de la BD de entrada
 %disp('Analizando BD de entrada...');

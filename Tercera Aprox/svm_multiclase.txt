@@ -1,0 +1,24 @@
+entradas
+targets = [1 2 3 4 5 6]
+
+for clase = unique(targets),
+
+	salidasDeseadas = targets(clase, :);
+
+	svm = fitcsvm(entradas, salidasDeseadas);
+
+	[class score] = predict(svm, ......)
+
+	scores(clase) = score;
+
+end;
+
+Solo para una clase
+
+scores [-2.3, -6.4, 0.5, 4, -0.5]
+
+max(scores) == scores [0, 0, 0, 1, 0]
+
+find = 4;;
+
+class = find(max(scores)==scores)

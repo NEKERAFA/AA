@@ -1,0 +1,6 @@
+primer sujeto (sc4002e0):
+fase 1: 870-872
+fase 2: 873-889
+fase 3: 890-898
+fase 4: 899-936
+fase 5: 1002-1021
