@@ -1,14 +1,24 @@
 clear all;
 close all;
 
+% BD de entrada
+bd = 'sleep-EDF';
+
 % BD procesada
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 10;
+n = 1;
+
+% Tipo de clasificador
+type = 'rna';
 
 % Capas ocultas en RNA
 hiddenSize = 8;
+
+% Procesamos los datos de la BD de entrada
+%disp('Analizando BD de entrada...');
+analizar_bd(bd, bd_proc);
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
@@ -48,6 +58,7 @@ for i=1:n
 end
 
 % Media de las confusiones
+%conf = conf/n;
 mean_conf_test = mean2(conf(1,:));
 mean_conf_train = mean2(conf(2,:));
 mean_conf_val = mean2(conf(3,:));
