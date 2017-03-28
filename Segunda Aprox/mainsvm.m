@@ -1,18 +1,11 @@
 clear all;
 close all;
 
-% BD de entrada
-bd = 'sleep-EDF';
-
 % BD procesada
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
 n = 1;
-
-% Procesamos los datos de la BD de entrada
-%disp('Analizando BD de entrada...');
-%analizar_bd(bd, bd_proc);
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
