@@ -15,4 +15,5 @@ function [model, particion] = entrenarsvm(entradas, salidas)
     disp('Configurando la svm');
     
     model = fitcsvm(entradas_training, salidas_training, 'KernelFunction', 'rbf', 'KernelScale', 0.5);
+
 end

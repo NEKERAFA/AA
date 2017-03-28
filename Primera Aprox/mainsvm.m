@@ -5,7 +5,7 @@ close all;
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 30;
+n = 1;
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
