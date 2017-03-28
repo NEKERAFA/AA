@@ -57,8 +57,8 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
             Entradas(2, patron) = sujeto.(eeg_desv)(marco);
             Entradas(3, patron) = sujeto.(eeg_mean)(marco);
             % Entradas(4, patron) = sujeto.(mean_franjas0a5)(marco);
-            Entradas(4, patron) = sujeto.(mean_franjas5a10)(marco);
-            % Entradas(5, patron) = sujeto.(desv_franjas0a5)(marco);
+            % Entradas(4, patron) = sujeto.(mean_franjas5a10)(marco);
+            Entradas(4, patron) = sujeto.(desv_franjas0a5)(marco);
             Entradas(5, patron) = sujeto.(desv_franjas5a10)(marco);
             % Obtenemos las salidas deseadas
             SalidasDeseadas(:, patron) = sujeto.(salidas_deseadas)(:, marco);

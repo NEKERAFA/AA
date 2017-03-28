@@ -38,7 +38,7 @@ function analizar_bd( nombre, salida )
             % Añadimos el campo a la bd de salida
             bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             % Analizamos la media y la desviación típica
-            [media_sujeto, desviacion_sujeto, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, desv_franjas5a10] = analizar_EEG(sujeto.(eeg), marco_eeg);
+            [media_sujeto, desviacion_sujeto, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, desv_franjas5a10, transformada] = analizar_EEG(sujeto.(eeg), marco_eeg);
             % Añadimos los campos a la bd
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean')) = media_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_std')) = desviacion_sujeto;
@@ -46,6 +46,7 @@ function analizar_bd( nombre, salida )
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean_franjas5a10')) = mean_franjas5a10;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_desv_franjas0a5')) = desv_franjas0a5;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_desv_franjas5a10')) = desv_franjas5a10;
+            bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_trans')) = transformada;
             % Añadimos a la bd si el sujeto está despierto o dormido
             bd_salida.(nombre_sujetos{i}).(sleep) = analizar_fases(sujeto.(sleep));
         end

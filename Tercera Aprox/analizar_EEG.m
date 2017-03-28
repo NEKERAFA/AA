@@ -1,4 +1,4 @@
-function [ media_v, desv_v, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, desv_franjas5a10] = analizar_EEG(eeg_v,n)
+function [ media_v, desv_v, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, desv_franjas5a10, trans] = analizar_EEG(eeg_v,n)
 %analizar_EEG Obtiene las medias y desviaciones de los electroencefalogramas
 % en marcos de n muestras
 %       analizar_EEG( eeg_v, n )
@@ -41,18 +41,19 @@ function [ media_v, desv_v, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, 
         % fftshift simply converts that to [(N/2:N-1) (0:(N/2-1))]
         
         % Longitud del marco
-        L = length(marcos{i});
+        % L = length(marcos{i});
         
         % Calculamos la transformada de Fourier
-        transformada = fft(marcos{i}(1:L/2));
+        transformada = abs(fft(marcos{i}));
+        trans(i,:) = transformada;
         
-        mean_franjas0a5(i) = abs(mean(extraer_franja(transformada,0,5)));
-        mean_franjas5a10(i) = abs(mean(extraer_franja(transformada,5,10)));
+        mean_franjas0a5(i) = mean(extraer_franja(transformada,0,5));
+        mean_franjas5a10(i) = mean(extraer_franja(transformada,5,10));
         desv_franjas0a5(i) = std(extraer_franja(transformada,0,5));
         desv_franjas5a10(i) = std(extraer_franja(transformada,5,10));
         
         % Calculamos su media
-        media_v(i) = abs(mean(transformada));
+        media_v(i) = mean(transformada);
         
         % Calculamos su deviación típica
         desv_v(i) = std(transformada);
