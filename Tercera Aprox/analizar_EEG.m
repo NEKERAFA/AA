@@ -21,6 +21,8 @@ function [ media_v, desv_v, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, 
      mean_franjas5a10 = zeros(length(marcos),1);
      desv_franjas0a5 = zeros(length(marcos),1);
      desv_franjas5a10 = zeros(length(marcos),1);
+     % TODO: Borrar luego:
+     trans = 0;
    
     % Recorremos los marcos
     for i=1:length(marcos)
@@ -30,7 +32,7 @@ function [ media_v, desv_v, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, 
         
         % Calculamos la transformada de Fourier
         transformada = abs(fft(marcos{i}));
-        trans(i,:) = transformada;
+        %trans(i,:) = transformada;
         
         mean_franjas0a5(i) = mean(extraer_franja(transformada,0,5));
         mean_franjas5a10(i) = mean(extraer_franja(transformada,5,10));

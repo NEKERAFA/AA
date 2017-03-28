@@ -13,7 +13,7 @@ function [model, particion] = entrenarknn(entradas, salidas)
     
     % Configuramos el sistema
     disp('Configurando el sistema knn');
-    model = fitcknn(entradas_training, salidas_training, 'NumNeighbors', 4);
+    model = fitcknn(entradas_training, salidas_training, 'NumNeighbors', 7);
 
 end
 

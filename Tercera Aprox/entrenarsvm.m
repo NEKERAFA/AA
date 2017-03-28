@@ -9,6 +9,7 @@ function [models, particion] = entrenarsvm(entradas, salidas)
     % Cogemos los datos de entrenamiento
     entradas_training = entradas(:, particion.training(1));
     targets = salidas(:, particion.training(1));
+    models = cell(3);
     
     % Iteramos cada clase
     for clase = 1:size(targets);
@@ -16,7 +17,7 @@ function [models, particion] = entrenarsvm(entradas, salidas)
         
         % Configuramos la svm
         fprintf('Configurando la svm de la clase %d\n', clase);
-        svm = fitcsvm(entradas_training', salidas_training', 'KernelFunction', 'rbf');
+        svm = fitcsvm(entradas_training', salidas_training', 'KernelFunction', 'rbf', 'KernelScale', 1.5);
 
         models{clase} = svm;
     end
