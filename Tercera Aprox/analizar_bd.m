@@ -46,7 +46,7 @@ function analizar_bd( nombre, salida )
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean_franjas5a10')) = mean_franjas5a10;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_desv_franjas0a5')) = desv_franjas0a5;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_desv_franjas5a10')) = desv_franjas5a10;
-            bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_trans')) = transformada;
+            %bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_trans')) = transformada;
             % Añadimos a la bd si el sujeto está despierto o dormido
             bd_salida.(nombre_sujetos{i}).(sleep) = analizar_fases(sujeto.(sleep));
         end
