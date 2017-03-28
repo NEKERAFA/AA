@@ -8,7 +8,7 @@ bd_proc = 'bd_proc';
 n = 50;
 
 % Capas ocultas en RNA
-hiddenSize = [8 3];
+hiddenSize = 8;
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
@@ -67,4 +67,4 @@ desv_conf_test = std(conf(1,:));
 desv_conf_train = std(conf(2,:));
 desv_conf_val = std(conf(3,:));
 
-plotconfusion(mejor_target_test,mejor_outputs);
+plotconfusion(mejor_target_test,mejor_outputs_test);

@@ -14,5 +14,5 @@ function [model, particion] = entrenarsvm(entradas, salidas)
     % Configuramos la svm
     disp('Configurando la svm');
     
-    model = fitcsvm(entradas_training, salidas_training, 'KernelFunction', 'rbf');
+    model = fitcsvm(entradas_training, salidas_training, 'KernelFunction', 'polynomial', 'PolynomialOrder', 2);
 end
