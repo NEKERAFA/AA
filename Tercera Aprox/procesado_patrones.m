@@ -60,6 +60,7 @@ function [ Entradas, SalidasDeseadas ] = procesado_patrones(nombre)
             %Entradas(5, patron) = sujeto.(mean_franjas5a10)(marco);
             Entradas(4, patron) = sujeto.(desv_franjas0a5)(marco);
             Entradas(5, patron) = sujeto.(desv_franjas5a10)(marco);
+            
             % Obtenemos las salidas deseadas
             SalidasDeseadas(:, patron) = sujeto.(salidas_deseadas)(:, marco);
             % Siguiente patron
