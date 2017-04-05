@@ -39,6 +39,26 @@ function analizar_bd( nombre, salida )
             bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             % Analizamos la media y la desviación típica
             [media_sujeto, desviacion_sujeto, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, desv_franjas5a10, transformada] = analizar_EEG(sujeto.(eeg), marco_eeg);
+            
+            % Eliminamos los marcos con valor erróneo en el hipnograma
+            % Contador de las posiciones borradas
+            borrados = 0;
+            
+            % Nos aseguramos que el hipnograma tiene la misma longitud que
+            % el resto de datos
+            longitud_marcos = min(length(media_sujeto), length(sujeto.(sleep)));
+            hypnogram_sujeto = sujeto.(sleep)(1:longitud_marcos);
+            
+            for j = 1:longitud_marcos
+                if sujeto.(sleep)(j) == 9
+                    temp_sujeto(j-borrados) = [];
+                    media_sujeto(j-borrados) = [];
+                    desviacion_sujeto(j-borrados) = [];
+                    hypnogram_sujeto(j-borrados) = [];
+                    borrados = borrados+1;
+                end
+            end
+            
             % Añadimos los campos a la bd
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean')) = media_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_std')) = desviacion_sujeto;
@@ -48,7 +68,7 @@ function analizar_bd( nombre, salida )
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_desv_franjas5a10')) = desv_franjas5a10;
             %bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_trans')) = transformada;
             % Añadimos a la bd si el sujeto está despierto o dormido
-            bd_salida.(nombre_sujetos{i}).(sleep) = analizar_fases(sujeto.(sleep));
+            bd_salida.(nombre_sujetos{i}).(sleep) = analizar_fases(hypnogram_sujeto);
         end
     end
 
