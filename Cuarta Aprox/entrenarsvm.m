@@ -9,7 +9,7 @@ function [models, particion] = entrenarsvm(entradas, salidas)
     % Cogemos los datos de entrenamiento
     entradas_training = entradas(:, particion.training(1));
     targets = salidas(:, particion.training(1));
-    models = cell(3);
+    models = cell(4);
     
     % Iteramos cada clase
     for clase = 1:size(targets);

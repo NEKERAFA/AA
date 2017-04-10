@@ -5,7 +5,7 @@ close all;
 bd_proc = 'bd_proc';
 
 % Numero de veces que se entrena el clasificador
-n = 30;
+n = 1;
 
 % Preparamos los patrones para pasarselos despues al clasificador
 disp('Preparando entradas y salidas deseadas...');
@@ -25,8 +25,8 @@ for i=1:n
     
     % Probamos los patrones totales
     disp('Probando los patrones de test y train');
-    salidas = zeros(length(salidas_deseadas), 3);
-    scores = zeros(length(salidas_deseadas), 3);
+    salidas = zeros(length(salidas_deseadas), 4);
+    scores = zeros(length(salidas_deseadas), 4);
     
     % Lanzamos un predict para cada clase
     for clase = 1:size(salidas_deseadas)

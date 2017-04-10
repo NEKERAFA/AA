@@ -35,8 +35,6 @@ function analizar_bd( nombre, salida )
         if isfield(sujeto, temp)
             % Analizamos la temperatura del sujeto
             temp_sujeto = analizar_temp(sujeto.(temp), marco_temp);
-            % Añadimos el campo a la bd de salida
-            bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             % Analizamos la media y la desviación típica
             [media_sujeto, desviacion_sujeto] = analizar_EEG(sujeto.(eeg), marco_eeg);
             
@@ -60,6 +58,7 @@ function analizar_bd( nombre, salida )
             end
             
             % Añadimos los campos a la bd
+            bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean')) = media_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_std')) = desviacion_sujeto;
             % Añadimos a la bd si el sujeto está despierto o dormido

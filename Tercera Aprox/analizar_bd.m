@@ -35,8 +35,6 @@ function analizar_bd( nombre, salida )
         if isfield(sujeto, temp)
             % Analizamos la temperatura del sujeto
             temp_sujeto = analizar_temp(sujeto.(temp), marco_temp);
-            % Añadimos el campo a la bd de salida
-            bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             % Analizamos la media y la desviación típica
             [media_sujeto, desviacion_sujeto, mean_franjas0a5, mean_franjas5a10, desv_franjas0a5, desv_franjas5a10, transformada] = analizar_EEG(sujeto.(eeg), marco_eeg);
             
@@ -55,11 +53,16 @@ function analizar_bd( nombre, salida )
                     media_sujeto(j-borrados) = [];
                     desviacion_sujeto(j-borrados) = [];
                     hypnogram_sujeto(j-borrados) = [];
+                    mean_franjas0a5(j-borrados) = [];
+                    mean_franjas5a10(j-borrados) = [];
+                    desv_franjas0a5(j-borrados) = [];
+                    desv_franjas5a10(j-borrados) = [];
                     borrados = borrados+1;
                 end
             end
             
             % Añadimos los campos a la bd
+            bd_salida.(nombre_sujetos{i}).(temp) = temp_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean')) = media_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_std')) = desviacion_sujeto;
             bd_salida.(nombre_sujetos{i}).(strcat(eeg, '_mean_franjas0a5')) = mean_franjas0a5;
