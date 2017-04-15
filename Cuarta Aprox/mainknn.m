@@ -20,10 +20,11 @@ salidas_fila = zeros(1,size(salidas,2));
 % Primera fila: clase 1
 % Segunda fila: clase 2
 % Tercera fila: clase 3
+% Cuarta  fila: clase 4
 % Dado que sólo hay un 1 por columna, siempre tendremos un valor entre
-% 1 y 3
+% 1 y 4
 for i=1:size(salidas_fila,2)
-    salidas_fila(i) = salidas(1,i) + salidas(2,i)*2 + salidas(3,i)*3;
+    salidas_fila(i) = salidas(1,i) + salidas(2,i)*2 + salidas(3,i)*3 + salidas(4,i)*4;
 end
 
 % Fracción de muestras mal clasificadas
