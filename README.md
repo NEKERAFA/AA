@@ -1,5 +1,9 @@
 ﻿# Repositorio de Aprendizaje Automático
 
+Prática de la asignatura de Aprendizaje Automático del curso 2016-2017
+
+Facultade de Informática (FIC) da Universidad da Couña (UDC)
+
 ## Descarga del repositorio
 
 ### Windows / Mac
